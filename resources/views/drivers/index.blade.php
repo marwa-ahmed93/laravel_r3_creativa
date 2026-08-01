@@ -19,11 +19,10 @@
 <a class="btn btn-info m-3" href="{{route('drivers.create')}}">Create Driver</a>
 
 
-
-<!-- <form class="w-75   m-auto " action="#" method="GET">
+ <form class="w-75   m-auto " action="{{route('drivers.search')}}" method="GET">
     <input type="text" name="search" class="form-control my-2" placeholder="Search by ID or Name">
     <button class="btn btn-primary m-2" type="submit">Search</button>
-</form>  -->
+</form>  
 
 
 
@@ -52,7 +51,7 @@
 
 </table>
 <div class="w-50 m-auto ">
-    {{$drivers->links()}}
+   
 </div>
 
 

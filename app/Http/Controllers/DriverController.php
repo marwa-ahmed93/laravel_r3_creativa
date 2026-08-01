@@ -43,9 +43,31 @@ return Redirect()->route('drivers.index');
 
 
 
+// public function index(Request $request)
+// {
+//     $search = $request->search;
+
+//     $users = User::query();
+
+//     if ($search) {
+//         $users->where(function ($query) use ($search) {
+//             if (is_numeric($search)) {
+//                 $query->where('id', $search);
+//             }
+
+//             $query->orWhere('name', 'like', "%{$search}%");
+//         });
+//     }
+
+//     $users = $users->paginate(10)->withQueryString();
+
+//     return view('users.index', compact('users'));
+// }
+
+
 public function index(){
-  
-    $drivers = Driver::paginate(10);             //ORM
+   $drivers = Driver::get();     
+    //$drivers = Driver::paginate(10);             //ORM
 //$drivers = DB::table('drivers')->paginate(10);   //query builder
 // $drivers = Driver::where('id', '>' ,10)->orderBy('name')->get();
    return view('drivers.index' ,compact('drivers'));
@@ -78,16 +100,16 @@ public function show($id){
 
 
 
-// public function search(Request $request)
-// {
-//     $search = $request->search;
+public function search(Request $request)
+{
+    $search = $request->search;
 
-//     $drivers = Driver::where('id', $search)
-//         ->orWhere('name', 'like', "%{$search}%")
-//         ->get();
+    $drivers = Driver::where('id', $search)
+        ->orWhere('name', 'like', "%{$search}%")
+        ->get();
 
-//     return view('drivers.index', compact('drivers'));
-// }
+    return view('drivers.index', compact('drivers'));
+}
 
 
 

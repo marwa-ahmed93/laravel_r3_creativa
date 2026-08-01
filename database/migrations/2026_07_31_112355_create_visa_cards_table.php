@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,12 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cars', function (Blueprint $table) {
+        Schema::create('visa_cards', function (Blueprint $table) {
             $table->id();
-            $table->string('model');
-            $table->integer('price');
-            $table->string('image');
-            $table->softDeletes();
+            $table->integer('visa_number')->unique();
+            // $table->integer('user_id');
+            // $table->foreign('user_id')->references('id'); 
+            $table->foreignId('user_id')->constrained()->uniqid();   //users id
+            // $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cars');
+        Schema::dropIfExists('visa_cards');
     }
 };

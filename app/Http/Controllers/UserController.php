@@ -11,8 +11,13 @@ class UserController extends Controller
 {
     
 
-public function index(){
-    return view('hello');
+public function index($id){
+
+ $user =   User::find($id)->first();
+//   dd($user->visacard());
+//    $user =  User::get();
+//    dd($user->visacard());
+   return view('hello',compact('user'));
 }
 
 public function create(){
@@ -39,5 +44,13 @@ return Redirect()->route('users');
 DB::table('users')->get();
 
 }
+
+
+// public function show($id){
+//   $user =   User::find($id)->visacard()->get();
+//   dd($user);
+// }
+
+
 
 }

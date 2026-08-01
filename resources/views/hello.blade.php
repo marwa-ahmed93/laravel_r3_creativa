@@ -7,6 +7,8 @@
 </head>
 <body>
     
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga nam vitae, harum veniam totam aspernatur assumenda quas quibusdam optio unde.</p>
+<h1>user name:  {{$user->name}}</h1>
+<h2>card number: a{{$user->visacard->visa_number}}</h2>
+
 </body>
 </html>

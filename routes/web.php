@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckRole;
@@ -33,9 +34,11 @@ Route::view('/welcome', 'hello');
 Route::controller(UserController::class)->group(function () {
     // Route::prefix('admin')->group(function () {
 
-        Route::get('/user', 'index')->name('users')->middleware(CheckRole::class);
-        Route::get('/user/create', 'create')->middleware(CheckRole::class);
-        Route::post('/user/store', 'store')->middleware(CheckRole::class);
+        Route::get('/user/{id}', 'index')->name('users');
+        Route::get('/user/create', 'create');
+        Route::post('/user/store', 'store');
+        Route::get('/user/show/{$id}','show');
+
     // });
 });
 
@@ -63,7 +66,25 @@ Route::get('/driver/{id}','show')->name('driver.show');
 
 
 
-// Route::get('/drivers/search','search')
-//     ->name('drivers.search');
+Route::get('/drivers/search','search')
+    ->name('drivers.search');
+
+});
+
+
+
+Route::controller(CarController::class)->group(function(){
+
+Route::get('/cars','index')->name('cars.index');
+
+Route::get('car/create' , 'create')->name('cars.create');
+Route::post('car/store','store')->name('car.store');
+
+Route::get('/delete/car/{id}','delete');
+
+Route::get('/restore/car/{id}','restore');
+
+
+
 
 });
