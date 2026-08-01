@@ -34,10 +34,10 @@ Route::view('/welcome', 'hello');
 Route::controller(UserController::class)->group(function () {
     // Route::prefix('admin')->group(function () {
 
-        Route::get('/user/{id}', 'index')->name('users');
+        Route::get('/user', 'index')->name('users');
         Route::get('/user/create', 'create');
         Route::post('/user/store', 'store');
-        Route::get('/user/show/{$id}','show');
+        Route::get('/user/show/{$id}', 'show');
 
     // });
 });

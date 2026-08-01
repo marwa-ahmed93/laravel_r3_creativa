@@ -11,13 +11,17 @@ class UserController extends Controller
 {
     
 
-public function index($id){
+public function index(){
 
- $user =   User::find($id)->first();
+//  $user =   User::find($id)->first();
+
+$users = User::with('visacard')->get();  //one to many
+
+//  $user =  User::get();
 //   dd($user->visacard());
 //    $user =  User::get();
 //    dd($user->visacard());
-   return view('hello',compact('user'));
+   return view('hello',compact('users'));
 }
 
 public function create(){
@@ -46,10 +50,13 @@ DB::table('users')->get();
 }
 
 
-// public function show($id){
+public function show($id){
 //   $user =   User::find($id)->visacard()->get();
 //   dd($user);
-// }
+
+ $user =   User::find($id)->first();  //one to one
+   return view('show',compact('user'));
+}
 
 
 
